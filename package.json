@@ -30,6 +30,7 @@
     "mongoose": "^9.10.2",
     "multer": "^2.4.0",
     "multer-storage": "^0.4.1",
-    "multer-storage-cloudinary": "^4.0.0"
+    "multer-storage-cloudinary": "^4.0.0",
+    "zod": "^4.6.7"
   }
 }
