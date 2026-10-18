@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
 
 const userRouter = require("./routes/users/userRoutes");
 const postsRouter = require("./routes/posts/postsRoutes");
@@ -8,14 +9,29 @@ const categoriesRoutes = require("./routes/categories/categoriesRoutes");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 const Post = require("./modal/Post/Post");
 const corsOptions = require("./utils/corsOptions");
+const rateLimit = require("express-rate-limit");
 
 require("dotenv").config();
 require("./config/dbConnect");
 
 const app = express();
 
+// Security headers
+app.use(helmet());
+
+// added CORS
 app.use(cors(corsOptions));
 
+// rate-limit
+const rateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+  message: "Too many request",
+});
+
+app.use(rateLimiter);
+
+// ues json middleware for take json data in payload
 app.use(express.json());
 
 // middlewares
