@@ -5,7 +5,7 @@ import {
   firstNameField,
   lastNameField,
   passwordField,
-  paramsIdField,
+  paramsIdSchema,
 } from "./common.validation.js";
 
 // Register user
@@ -35,6 +35,4 @@ export const updateUserPasswordSchema = z.strictObject({
 });
 
 // Validate route params
-export const paramsIdSchema = z.strictObject({
-  id: paramsIdField,
-});
+export { paramsIdSchema };

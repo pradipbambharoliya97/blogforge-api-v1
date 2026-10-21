@@ -21,6 +21,14 @@ export const passwordField = z
   .min(5, { error: "Password must be at least 5 characters long" });
 
 // Common MongoDB ObjectId validation
-export const paramsIdField = z.string().regex(/^[a-fA-F0-9]{24}$/, {
+export const objectIdField = z.string().regex(/^[a-fA-F0-9]{24}$/, {
   error: "Invalid ID. Please provide a valid MongoDB ObjectId.",
+});
+
+// Alias for backward compatibility
+export const paramsIdField = objectIdField;
+
+// Common MongoDB ObjectId route params schema
+export const paramsIdSchema = z.strictObject({
+  id: objectIdField,
 });
